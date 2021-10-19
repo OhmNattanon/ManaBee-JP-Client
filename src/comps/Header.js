@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
-  const [isLogIn, setIsLogIn] = useState(false);
-
-  // useEffect(() => {
-  //   async function checkLogIn() {
-  //     if (await localStorage["auth-key"]) {
-  //       return setIsLogIn(true);
-  //     }
-  //   }
-  //   checkLogIn();
-  // }, []);
-
+function Header({ isLogIn, setIsLogIn }) {
   const handleLogOut = () => {
     localStorage.clear();
     setIsLogIn(false);
