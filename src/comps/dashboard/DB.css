@@ -1,0 +1,27 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.welcome {
+  width: 50%;
+  background-color: white;
+  color: salmon;
+}
+.mainContainer {
+  background-color: salmon;
+  height: 100vh;
+}
+.myCourse,
+.progress {
+  color: white;
+}
+.boxOne {
+  background-color: white;
+}
+
+button {
+  display: block;
+  margin-top: 5px;
+}

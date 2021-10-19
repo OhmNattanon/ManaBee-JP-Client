@@ -1,38 +1,110 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  height: 8vh;
+  margin: 3px;
+}
+
+.logo {
+  color: salmon;
+}
+
+.navbar > li,
+.navbar > button {
+  text-decoration: none;
+  display: inline;
+  margin: 0 10px 0 10px;
+}
+
+li > a {
+  text-decoration: none;
+}
+
+.landingMain {
+  height: 100vh;
+  background-color: salmon;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
+}
+
+.landingEng,
+.landingJp {
+  width: 300px;
+  color: #ffffff;
+}
+
+.landingJp {
+  width: 600px;
+  font-size: 40px;
+}
+
+.manabee {
+  padding: 20px;
+  width: 250px;
+  background-color: white;
+  color: salmon;
+  font-size: 48px;
+}
+
+.footer {
+  height: 5vh;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.signup,
+.login {
+  background-color: #034c52;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login {
+  background-color: salmon;
+  color: black;
 }
+.whatwedo {
+  height: 100vh;
+  background-color: #034c52;
+  color: #ffffff;
+}
+.course {
+  height: 100vh;
+  background-color: bisque;
+}
+.article {
+  height: 100vh;
+  background-color: burlywood;
+}
+.landingContainer {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+section {
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aboutus {
+  height: 100vh;
+  background-color: cadetblue;
+}
+/* section > h1 {
+  position: relative;
+  top: 50%;
+  left: 50%;
+} */
