@@ -9,6 +9,7 @@ import Register from "./comps/Register";
 import DashboardMain from "./comps/dashboard/DashboardMain";
 import CourseMain from "./comps/course/CourseMain";
 import WordGame from "./comps/game/WordGame";
+import CourseId from "./comps/course/CourseId";
 
 function App() {
   const [isLogIn, setIsLogIn] = useState(false);
@@ -28,7 +29,7 @@ function App() {
           <Route path="/user/register" component={Register} />
           <Route exact path="/user/login" component={Login} />
           <Route path="/dashboard" component={DashboardMain} />
-          {/* <Route path="/course/:courseId" component={CourseMain} /> */}
+          <Route path="/course/:id" component={CourseId} />
           <Route path="/course" component={CourseMain} />
           <Route path="/game" component={WordGame} />
         </Switch>

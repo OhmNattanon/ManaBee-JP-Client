@@ -1,21 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import SideNav from "./SideNav";
 
-function CourseMain() {
-  //fetch from db
+function CourseId() {
+  const { id } = useParams();
   const [content, setContent] = useState([]);
   useEffect(() => {
     try {
       const fecthContent = async () => {
-        const res = await axios.get("http://localhost:8080/course/1");
+        const res = await axios.get(`http://localhost:8080/course/${id}`);
         setContent(res.data);
       };
       fecthContent();
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [id]);
 
   return (
     <div className="grid grid-cols-10 my-10">
@@ -48,4 +49,4 @@ function CourseMain() {
   );
 }
 
-export default CourseMain;
+export default CourseId;

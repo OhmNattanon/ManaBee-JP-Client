@@ -37,7 +37,7 @@ function SideNav() {
             <li className="">
               <Link
                 className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                to="/course"
+                to="/course/1"
               >
                 Hiragana
               </Link>
@@ -45,7 +45,7 @@ function SideNav() {
             <li className="">
               <Link
                 class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                to="/course"
+                to="/course/2"
               >
                 Katakana
               </Link>
@@ -53,7 +53,7 @@ function SideNav() {
             <li className="">
               <Link
                 className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                to="/course"
+                to="/course/3"
               >
                 Grammar 101
               </Link>
@@ -61,7 +61,7 @@ function SideNav() {
             <li className="">
               <Link
                 className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                to="/course"
+                to="/course/4"
               >
                 Grammar 102
               </Link>
@@ -69,7 +69,7 @@ function SideNav() {
             <li className="">
               <Link
                 className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                to="/course"
+                to="/course/5"
               >
                 Grammar 103
               </Link>
@@ -77,7 +77,7 @@ function SideNav() {
             <li className="">
               <Link
                 className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                to="/course"
+                to="/course/6"
               >
                 Grammar 104
               </Link>
