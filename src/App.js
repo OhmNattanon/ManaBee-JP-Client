@@ -1,4 +1,3 @@
-import Footer from "./comps/Footer";
 import Header from "./comps/Header";
 import Landing from "./comps/landing/LandingMain";
 import "./App.css";
@@ -19,7 +18,7 @@ function App() {
       setIsLogIn(true);
     }
     return isLogIn;
-  }, []);
+  }, [isLogIn]);
   return (
     <div className="App">
       <BrowserRouter>
@@ -29,23 +28,11 @@ function App() {
           <Route path="/user/register" component={Register} />
           <Route exact path="/user/login" component={Login} />
           <Route path="/dashboard" component={DashboardMain} />
+          {/* <Route path="/course/:courseId" component={CourseMain} /> */}
           <Route path="/course" component={CourseMain} />
           <Route path="/game" component={WordGame} />
         </Switch>
-        <Footer />
       </BrowserRouter>
-
-      {/* <DashboardMain /> */}
-
-      {/* {users.map((item, index) => {
-        return (
-          <div>
-            <h1>{item.Fname}</h1>
-            <p>{item.username}</p>
-            <p>{item.email}</p>
-          </div>
-        );
-      })} */}
     </div>
   );
 }

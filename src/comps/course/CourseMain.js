@@ -2,31 +2,36 @@ import React from "react";
 import SideNav from "./SideNav";
 
 function CourseMain() {
+  //fetch from db
+  const mainVid = "https://www.youtube.com/embed/PAfi3D9K7lk";
+  const mainText =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisl";
+
   return (
-    <div className="d-flex">
-      <SideNav />
-      <div>
-        <div className="d-flex justify-content-center">
-          <iframe
-            src="https://www.youtube.com/embed/PAfi3D9K7lk"
-            width="400"
-            height="300"
-          ></iframe>
-        </div>
-        <p className="mt-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisl
-          orci, auctor eu turpis quis, laoreet hendrerit nisi. Fusce facilisis,
-          odio vel ornare efficitur, tellus felis mollis ante, sit amet dapibus
-          dolor arcu vel ex. Ut lacinia vestibulum felis, elementum varius erat
-          sollicitudin ut. Maecenas in erat eget neque vehicula vulputate vel ac
-          nisl. Sed sit amet sem pretium, tincidunt augue non, feugiat orci.
-          Donec ut porta purus. Ut et odio eu tortor faucibus aliquet non nec
-          risus. Praesent scelerisque et augue eu gravida. Praesent iaculis
-          nulla quam, in lobortis lorem euismod vitae. Fusce vel aliquet mauris.
-        </p>
-        <div className="d-flex">
-          <button className="m-2">Mark as completed</button>
-          <button className="m-2">Go to next chapter</button>
+    <div className="grid grid-cols-10 my-10">
+      <div className="col-span-2 ml-1">
+        <SideNav />
+      </div>
+      <div className="col-span-8 ml-2 bg-gray-300 rounded-lg p-5">
+        <div className="flex flex-col">
+          <div className="flex justify-center">
+            <iframe
+              title="mainVid"
+              src={mainVid}
+              width="600"
+              height="400"
+            ></iframe>
+          </div>
+          <div className="flex justify-start">
+            <p className="mt-5">{mainText}</p>
+          </div>
+          <div className="flex justify-start">
+            <div className="my-5">
+              <button className="bg-green-700 p-2 rounded-lg font-bold text-white">
+                Complete &amp; Go to next chapter
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

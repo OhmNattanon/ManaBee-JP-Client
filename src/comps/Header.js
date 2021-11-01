@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Header({ isLogIn, setIsLogIn }) {
@@ -9,50 +9,36 @@ function Header({ isLogIn, setIsLogIn }) {
   };
 
   return (
-    <header className="header">
-      <div className="logo">
-        <h2>
+    <header className="flex justify-between bg-white">
+      <div className="m-4">
+        <h2 className="text-4xl font-extrabold text-white p-5 rounded-lg bg-red-400">
           <Link to="/" class="text-decoration-none">
             ManaBee
           </Link>
         </h2>
       </div>
-      <div>
-        <ul className="navbar">
-          <li>
-            <a>What we do</a>
-          </li>
-          <li>
-            <a>Course</a>
-          </li>
-          <li>
-            <a>Article</a>
-          </li>
-          <li>
-            <a>About us</a>
-          </li>
-          {isLogIn ? (
-            <>
-              <li className="signup">
-                <Link to="/dashboard">Go to Dashboard</Link>
-              </li>
-              <li className="login">
-                <Link to="/" onClick={handleLogOut}>
-                  Log out
-                </Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="signup">
-                <Link to="/user/register">Sign up</Link>
-              </li>
-              <li className="login">
-                <Link to="/user/login">Log in</Link>
-              </li>
-            </>
-          )}
-        </ul>
+      <div className="flex m-4">
+        {isLogIn ? (
+          <>
+            <button className="m-2 bg-green-700 p-1 rounded-xl text-white my-4 hover:bg-green-500">
+              <Link to="/dashboard">Go to Dashboard</Link>
+            </button>
+            <button className="m-2 bg-red-400 p-1 rounded-xl text-white my-4 hover:bg-red-300">
+              <Link to="/" onClick={handleLogOut}>
+                Log out
+              </Link>
+            </button>
+          </>
+        ) : (
+          <>
+            <button className=" mx-1 px-2 bg-green-700 rounded-xl text-white my-4 hover:bg-green-500">
+              <Link to="/user/register">Sign up</Link>
+            </button>
+            <button className=" mx-1 px-2 bg-red-400 rounded-xl text-white my-4 hover:bg-red-600">
+              <Link to="/user/login">Log in</Link>
+            </button>
+          </>
+        )}
       </div>
     </header>
   );

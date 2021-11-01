@@ -29,73 +29,76 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1 className="d-flex justify-content-center">Register</h1>
-      <div className="container-sm d-flex justify-content-center border border-dark border-2 rounded-3">
-        <form action={url} method="post" className="lg-form">
-          <div className="p-2">
-            <input
-              type="text"
-              name="Fname"
-              id="Fname"
-              placeholder="Firstname"
-              className="bg-light border border-dark"
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              type="text"
-              name="Lname"
-              id="Lname"
-              placeholder="Lastname"
-              className="bg-light border border-dark"
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="email"
-              className="bg-light border border-dark"
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              className="bg-light border border-dark"
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="bg-light border border-dark"
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              type="password"
-              name="password2"
-              id="password2"
-              placeholder="Confirm your Password"
-              className="bg-light border border-dark"
-            />
-          </div>
-          <div className="d-flex justify-content-center p-2">
-            <input type="submit" value="Register" onClick={handleSummit} />
-          </div>
-        </form>
+    <div className="container-xl flex justify-center bg-gradient-to-b from-red-400 to-red-300">
+      <div className="flex flex-col justify-center border border-dark rounded-3 my-32">
+        <h1 className="mx-auto font-bold text-2xl">Register</h1>
+        <div className="p-2">
+          <input
+            type="text"
+            name="Fname"
+            id="Fname"
+            placeholder="Firstname"
+            className="bg-light border border-dark"
+            onChange={(e) => handleInput(e)}
+          />
+        </div>
+        <div className="p-2">
+          <input
+            type="text"
+            name="Lname"
+            id="Lname"
+            placeholder="Lastname"
+            className="bg-light border border-dark"
+            onChange={(e) => handleInput(e)}
+          />
+        </div>
+        <div className="p-2">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="email"
+            className="bg-light border border-dark"
+            onChange={(e) => handleInput(e)}
+          />
+        </div>
+        <div className="p-2">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            className="bg-light border border-dark"
+            onChange={(e) => handleInput(e)}
+          />
+        </div>
+        <div className="p-2">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            className="bg-light border border-dark"
+            onChange={(e) => handleInput(e)}
+          />
+        </div>
+        <div className="p-2">
+          <input
+            type="password"
+            name="password2"
+            id="password2"
+            placeholder="Confirm your Password"
+            className="bg-light border border-dark"
+          />
+        </div>
+        <div className="d-flex justify-content-center p-2 mx-auto">
+          <button
+            onClick={handleSummit}
+            className="bg-green-700 rounded-lg p-2 text-white font-bold"
+          >
+            Register
+          </button>
+        </div>
       </div>
       <br />
     </div>

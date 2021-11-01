@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -35,60 +35,68 @@ function Login() {
   };
 
   return (
-    <div>
-      <h1 className="d-flex justify-content-center">Login</h1>
-      <div className="container-sm d-flex justify-content-center border border-dark border-2 rounded-3">
-        <form action={url} method="post" className="lg-form">
-          <div className="p-2">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              className="bg-light border border-dark"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="bg-light border border-dark"
-              onChange={handleInput}
-            />
-          </div>
-          <div className="p-2">
-            <input
-              className="btn btn-primary"
-              type="submit"
-              value="Login"
-              onClick={handleLogIn}
-            />
-          </div>
-        </form>
-      </div>
-      {error && (
-        <div className="d-flex justify-content-center">
-          <h2>Incorrect username or password</h2>
+    <div className="container-xl flex justify-center bg-gradient-to-b from-red-400 to-red-300">
+      <div className="flex flex-col justify-center border border-dark rounded-3 my-32">
+        <h1 className="text-2xl font-bold mx-auto">Login</h1>
+        <div className="py-2 flex justify-center">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            className="border-2 border-solid border-gray-500"
+            onChange={handleInput}
+          />
         </div>
-      )}
-      {isLogIn && (
-        <>
+        <div className="py-2 flex justify-center">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            className="border-2 border-solid border-gray-500"
+            onChange={handleInput}
+          />
+        </div>
+        <div className="py-2 flex justify-center">
+          <button
+            className="bg-green-700 rounded-lg p-2 text-white font-bold"
+            type="submit"
+            value="Login"
+            onClick={handleLogIn}
+          >
+            LogIn
+          </button>
+        </div>
+        {/* error msg pop up here */}
+        {error && (
           <div className="d-flex justify-content-center">
-            <h2>Welcome back, {logIn.username}</h2>
+            <h2>Incorrect username or password</h2>
           </div>
-          <div className="d-flex justify-content-center m-2">
-            <Link to="/dashboard">
-              <button className="m-2 btn btn-success">Go to DashBoard</button>
-            </Link>
-            <Link to="/">
-              <button className="btn btn-danger">Back to Home</button>
-            </Link>
+        )}
+        {isLogIn && (
+          <div className="flex flex-col">
+            <br />
+            <div className="flex justify-center">
+              <h2 className="text-xl font-bold">
+                Welcome back, {logIn.username}
+              </h2>
+            </div>
+            <div className="flex justify-center m-2 items-center">
+              <Link to="/dashboard">
+                <button className="m-2 bg-green-700 rounded-lg p-2 text-white font-bold">
+                  Go to DashBoard
+                </button>
+              </Link>
+              <Link to="/">
+                <button className="m-2 font-bold text-white">
+                  Back to Home
+                </button>
+              </Link>
+            </div>
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 }

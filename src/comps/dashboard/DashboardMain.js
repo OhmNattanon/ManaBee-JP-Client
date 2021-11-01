@@ -16,7 +16,7 @@ function DashboardMain() {
     <div className="mainContainer d-flex justify-content-center">
       <div className="container-lg m-3 p-2">
         <div className="welcome p-2 mt-3 rounded-3">
-          <h1>Welcome back, {username}</h1>
+          <h1 className="text-black text-bold">Welcome back, {username}</h1>
         </div>
         <h2 className="myCourse">My course</h2>
         <div className="boxOne p-2 rounded-3">
