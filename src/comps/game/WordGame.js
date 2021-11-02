@@ -153,7 +153,7 @@ function WordGame() {
               })}
             </div>
             <div className="flex justify-items-start">
-              {letterBox.map((item, idx) => {
+              {/* {letterBox.map((item, idx) => {
                 if (idx > 19 && idx <= 24) {
                   return (
                     <div
@@ -171,7 +171,43 @@ function WordGame() {
                     </div>
                   );
                 }
+              })} */}
+              {letterBox.map((item, idx) => {
+                if (idx > 19 && idx <= 24)
+                  return (
+                    <div
+                      className={`${tableStyle} ${
+                        ansIdx.includes(idx) ? "bg-green-700 text-white" : ""
+                      }`}
+                      key={idx}
+                    >
+                      <h1
+                        className={textStyle}
+                        onClick={() => handleClick(item, idx)}
+                      >
+                        {item}
+                      </h1>
+                    </div>
+                  );
+                return;
               })}
+              {/* {letterBox.map((item, idx) =>
+                idx > 19 && idx <= 24 ? (
+                  <div
+                    className={`${tableStyle} ${
+                      ansIdx.includes(idx) ? "bg-green-700 text-white" : ""
+                    }`}
+                    key={idx}
+                  >
+                    <h1
+                      className={textStyle}
+                      onClick={() => handleClick(item, idx)}
+                    >
+                      {item}
+                    </h1>
+                  </div>
+                ) : null
+              )} */}
             </div>
             <div className="flex justify-items-start">
               {letterBox.map((item, idx) => {
