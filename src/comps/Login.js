@@ -25,7 +25,6 @@ function Login() {
   const handleLogIn = async (e) => {
     e.preventDefault();
     try {
-      console.log(logIn);
       const res = await axios.post(`${url}`, logIn);
       setIsLogIn(true);
       localStorage.setItem("auth-key", res.data.token);

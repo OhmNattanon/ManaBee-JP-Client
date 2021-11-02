@@ -3,14 +3,49 @@ import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 import "./DB.css";
+import axios from "axios";
 
 function DashboardMain() {
   const [username, setUsername] = useState();
+  const [user, setUser] = useState([]);
+  const [progress, setProgress] = useState([]);
+
+  const { id } = user;
+  const { score, courseId } = progress;
+
   useEffect(() => {
     const token = localStorage.getItem("auth-key");
     const decode = jwtDecode(token);
     setUsername(decode.username);
   }, []);
+
+  useEffect(() => {
+    try {
+      const fetchUser = async () => {
+        const res = await axios.post("http://localhost:8080/user/by-username", {
+          username: username,
+        });
+        setUser(res.data);
+      };
+      fetchUser();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [username]);
+
+  useEffect(() => {
+    try {
+      const fetchProgress = async () => {
+        const res = await axios.post("http://localhost:8080/progress/by-id", {
+          id: id,
+        });
+        setProgress(res.data);
+      };
+      fetchProgress();
+    } catch (error) {}
+  }, [id]);
+
+  const percentProgress = Math.floor((courseId / 6) * 100);
 
   return (
     <div className="mainContainer">
@@ -32,6 +67,9 @@ function DashboardMain() {
                 alt=""
                 className="rounded-full"
               />
+              <h1 className="font-bold text-2xl mx-5">
+                Current progress : {percentProgress}%
+              </h1>
               <Link to="/course">
                 <button className="p-2 bg-green-700 font-bold text-white rounded-xl mx-10">
                   Continue
@@ -54,6 +92,9 @@ function DashboardMain() {
                   alt=""
                   className="rounded-full"
                 />
+                <h1 className="font-bold text-2xl mx-5">
+                  Best score : {score}
+                </h1>
                 <Link to="/game">
                   <button className="p-2 bg-purple-500 font-bold text-white rounded-xl mx-10">
                     Go to Word Game

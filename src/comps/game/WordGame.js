@@ -87,6 +87,7 @@ function WordGame() {
                     </div>
                   );
                 }
+                return null;
               })}
             </div>
             <div className="flex justify-items-start">
@@ -107,6 +108,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -128,6 +131,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -149,6 +154,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -189,7 +196,7 @@ function WordGame() {
                       </h1>
                     </div>
                   );
-                return;
+                return null;
               })}
               {/* {letterBox.map((item, idx) =>
                 idx > 19 && idx <= 24 ? (
@@ -227,6 +234,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -248,6 +257,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -269,6 +280,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -290,6 +303,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
@@ -311,6 +326,8 @@ function WordGame() {
                       </h1>
                     </div>
                   );
+                } else {
+                  return null;
                 }
               })}
             </div>
