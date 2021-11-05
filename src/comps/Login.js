@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -12,6 +12,7 @@ function Login() {
 
   const [isLogIn, setIsLogIn] = useState(false);
   const [error, setError] = useState(false);
+  const [user, setUser] = useState({});
 
   const handleInput = (e) => {
     const newData = { ...logIn };
@@ -28,10 +29,25 @@ function Login() {
       const res = await axios.post(`${url}`, logIn);
       setIsLogIn(true);
       localStorage.setItem("auth-key", res.data.token);
+      localStorage.setItem("username", logIn.username);
     } catch (error) {
       console.dir(error.response.data.msg);
     }
   };
+
+  useEffect(() => {
+    try {
+      const fetchUser = async () => {
+        const res = await axios.post("http://localhost:8080/user/by-username", {
+          username: logIn.username,
+        });
+        localStorage.setItem("userId", res.data.id);
+      };
+      fetchUser();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [logIn.username]);
 
   return (
     <div className="container-xl flex justify-center bg-gradient-to-b from-red-400 to-red-300">
@@ -82,7 +98,7 @@ function Login() {
               </h2>
             </div>
             <div className="flex justify-center m-2 items-center">
-              <Link to="/dashboard">
+              <Link to={`/dashboard/${localStorage.getItem("userId")}`}>
                 <button className="m-2 bg-green-700 rounded-lg p-2 text-white font-bold">
                   Go to DashBoard
                 </button>

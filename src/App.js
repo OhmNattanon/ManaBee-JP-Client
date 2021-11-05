@@ -28,8 +28,8 @@ function App() {
           <Route path="/" exact component={Landing} />
           <Route path="/user/register" component={Register} />
           <Route exact path="/user/login" component={Login} />
-          <Route path="/dashboard" component={DashboardMain} />
-          <Route path="/course/:id" component={CourseId} />
+          <Route path="/dashboard/:userId" component={DashboardMain} />
+          <Route path="/course/:userId/:progressId" component={CourseId} />
           <Route path="/course" component={CourseMain} />
           <Route path="/game" component={WordGame} />
         </Switch>

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SideNav from "../course/SideNav";
 import letters from "./letter";
 import answer from "./answer";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 function WordGame() {
   //state
@@ -9,6 +12,29 @@ function WordGame() {
   const [score, setScore] = useState(0);
   const [pickLetters, setPickLetters] = useState("");
   const [allAnswer, setAllAnswer] = useState(answer);
+  const [username, setUsername] = useState();
+  const [user, setUser] = useState([]);
+
+  //useEffect to get user
+  useEffect(() => {
+    const token = localStorage.getItem("auth-key");
+    const decode = jwtDecode(token);
+    setUsername(decode.username);
+  }, []);
+
+  useEffect(() => {
+    try {
+      const fetchUser = async () => {
+        const res = await axios.post("http://localhost:8080/user/by-username", {
+          username: username,
+        });
+        setUser(res.data);
+      };
+      fetchUser();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [username]);
 
   //style and letters
   const letterBox = letters;
@@ -49,6 +75,15 @@ function WordGame() {
       remove.splice(remove.length - 3, 3);
       setansIdx(remove);
     }
+  };
+
+  const { id } = user;
+
+  const submitScore = async () => {
+    const res = await axios.patch("http://localhost:8080/progress/game", {
+      score: score,
+      id: id,
+    });
   };
 
   return (
@@ -160,25 +195,6 @@ function WordGame() {
               })}
             </div>
             <div className="flex justify-items-start">
-              {/* {letterBox.map((item, idx) => {
-                if (idx > 19 && idx <= 24) {
-                  return (
-                    <div
-                      className={`${tableStyle} ${
-                        ansIdx.includes(idx) ? "bg-green-700 text-white" : ""
-                      }`}
-                      key={idx}
-                    >
-                      <h1
-                        className={textStyle}
-                        onClick={() => handleClick(item, idx)}
-                      >
-                        {item}
-                      </h1>
-                    </div>
-                  );
-                }
-              })} */}
               {letterBox.map((item, idx) => {
                 if (idx > 19 && idx <= 24)
                   return (
@@ -198,23 +214,6 @@ function WordGame() {
                   );
                 return null;
               })}
-              {/* {letterBox.map((item, idx) =>
-                idx > 19 && idx <= 24 ? (
-                  <div
-                    className={`${tableStyle} ${
-                      ansIdx.includes(idx) ? "bg-green-700 text-white" : ""
-                    }`}
-                    key={idx}
-                  >
-                    <h1
-                      className={textStyle}
-                      onClick={() => handleClick(item, idx)}
-                    >
-                      {item}
-                    </h1>
-                  </div>
-                ) : null
-              )} */}
             </div>
             <div className="flex justify-items-start">
               {letterBox.map((item, idx) => {
@@ -355,16 +354,24 @@ function WordGame() {
           <div className="mt-6">
             <h1 className="font-bold text-2xl">Your Score : {score} / 10</h1>
           </div>
-          <button className="font-bold text-white bg-green-700 rounded-lg p-2 my-5">
-            Sensei, I give up..
+          <button
+            className="font-bold text-white bg-green-700 rounded-lg p-2 my-5"
+            onClick={submitScore}
+          >
+            <Link to={`/dashboard/${localStorage.getItem("userId")}`}>
+              Sensei, I give up..
+            </Link>
           </button>
           {score === 10 ? (
             <div>
               <h1 className="text-red-700 font-bold">
                 Congratulations! you complete the game!
               </h1>
-              <button className="font-bold text-white bg-red-400 rounded-lg p-2 my-5">
-                Back to Dashboard
+              <button
+                className="font-bold text-white bg-red-400 rounded-lg p-2 my-5"
+                onClick={submitScore}
+              >
+                <Link to="/dashboard">Back to Dashboard</Link>
               </button>
             </div>
           ) : (

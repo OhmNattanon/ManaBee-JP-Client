@@ -21,7 +21,9 @@ function Header({ isLogIn, setIsLogIn }) {
         {isLogIn ? (
           <>
             <button className="m-2 bg-green-700 p-1 rounded-xl text-white my-4 hover:bg-green-500">
-              <Link to="/dashboard">Go to Dashboard</Link>
+              <Link to={`/dashboard/${localStorage.getItem("userId")}`}>
+                Go to Dashboard
+              </Link>
             </button>
             <button className="m-2 bg-red-400 p-1 rounded-xl text-white my-4 hover:bg-red-300">
               <Link to="/" onClick={handleLogOut}>

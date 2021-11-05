@@ -4,19 +4,28 @@ import { useParams } from "react-router";
 import SideNav from "./SideNav";
 
 function CourseId() {
-  const { id } = useParams();
+  const { progressId } = useParams();
   const [content, setContent] = useState([]);
   useEffect(() => {
     try {
       const fecthContent = async () => {
-        const res = await axios.get(`http://localhost:8080/course/${id}`);
+        const res = await axios.get(
+          `http://localhost:8080/course/${progressId}`
+        );
         setContent(res.data);
       };
       fecthContent();
     } catch (error) {
       console.log(error);
     }
-  }, [id]);
+  }, [progressId]);
+
+  // const finishChapter =  async () => {
+  //   const res = await axios.patch(`http://localhost:8080/progress/course/`, {
+  //     CourseId : id,
+  //     userId :
+  //   })
+  // }
 
   return (
     <div className="grid grid-cols-10 my-10">
@@ -25,6 +34,7 @@ function CourseId() {
       </div>
       <div className="col-span-8 ml-2 bg-gray-300 rounded-lg p-5">
         <div className="flex flex-col">
+          <h1 className="font-bold text-2xl mb-4">{content.name}</h1>
           <div className="flex justify-center">
             <iframe
               title="mainVid"
