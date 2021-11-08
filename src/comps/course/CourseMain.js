@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SideNav from "./SideNav";
+import { useParams } from "react-router-dom";
 
 function CourseMain() {
+  const { progressId } = useParams();
+
   //fetch from db
   const [content, setContent] = useState([]);
   useEffect(() => {
@@ -16,6 +19,15 @@ function CourseMain() {
       console.log(error);
     }
   }, []);
+
+  //finish chapter
+  const finishChapter = async () => {
+    const res = await axios.patch("http://localhost:8080/progress/course", {
+      completed: parseInt(progressId) + 1,
+      // completed: 6,
+      UserId: localStorage.getItem("userId"),
+    });
+  };
 
   return (
     <div className="grid grid-cols-10 my-10">
@@ -37,7 +49,10 @@ function CourseMain() {
           </div>
           <div className="flex justify-start">
             <div className="my-5">
-              <button className="bg-green-700 p-2 rounded-lg font-bold text-white">
+              <button
+                className="bg-green-700 p-2 rounded-lg font-bold text-white"
+                onClick={finishChapter}
+              >
                 Complete &amp; Go to next chapter
               </button>
             </div>

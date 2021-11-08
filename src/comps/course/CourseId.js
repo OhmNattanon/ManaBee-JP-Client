@@ -2,9 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import SideNav from "./SideNav";
+import { Link } from "react-router-dom";
 
 function CourseId() {
   const { progressId } = useParams();
+  const userId = localStorage.getItem("userId");
+
   const [content, setContent] = useState([]);
   useEffect(() => {
     try {
@@ -20,12 +23,16 @@ function CourseId() {
     }
   }, [progressId]);
 
-  // const finishChapter =  async () => {
-  //   const res = await axios.patch(`http://localhost:8080/progress/course/`, {
-  //     CourseId : id,
-  //     userId :
-  //   })
-  // }
+  //finish chapter
+  const finishChapter = async () => {
+    const res = await axios.patch("http://localhost:8080/progress/course", {
+      completed: parseInt(progressId) + 1,
+      id: localStorage.getItem("userId"),
+    });
+  };
+
+  console.log(parseInt(progressId) + 1);
+  console.log(localStorage.getItem("userId"));
 
   return (
     <div className="grid grid-cols-10 my-10">
@@ -48,8 +55,13 @@ function CourseId() {
           </div>
           <div className="flex justify-start">
             <div className="my-5">
-              <button className="bg-green-700 p-2 rounded-lg font-bold text-white">
-                Complete &amp; Go to next chapter
+              <button
+                className="bg-green-700 p-2 rounded-lg font-bold text-white"
+                onClick={() => finishChapter()}
+              >
+                <Link to={`/course/${userId}/${parseInt(progressId) + +1}`}>
+                  Complete &amp; Go to next chapter
+                </Link>
               </button>
             </div>
           </div>
