@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import jwtDecode from "jwt-decode";
+import { Link, useHistory } from "react-router-dom";
+// import jwtDecode from "jwt-decode";
 
 import "./DB.css";
 import axios from "axios";
@@ -10,14 +10,9 @@ function DashboardMain() {
   const [user, setUser] = useState([]);
   const [progress, setProgress] = useState([]);
 
-  // const { id } = user;
   const { score, courseId } = progress;
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("auth-key");
-  //   const decode = jwtDecode(token);
-  //   setUsername(decode.username);
-  // }, []);
+  const history = useHistory();
 
   useEffect(() => {
     try {
@@ -45,15 +40,38 @@ function DashboardMain() {
     } catch (error) {}
   }, []);
 
+  const deleteUser = () => {
+    const confirmDel = window.confirm(
+      "Your progress will be lost, are you sure to proceed?"
+    );
+    if (confirmDel) {
+      axios.delete(
+        `http://localhost:8080/user/del/${localStorage.getItem("userId")}`
+      );
+      localStorage.clear();
+      history.push("/");
+    }
+  };
+
   const percentProgress = Math.floor((courseId / 6) * 100);
 
   return (
     <div className="mainContainer">
       <div className="container-lg m-3 p-2 w-10/12 mx-auto">
-        <div className="bg-white rounded-xl inline-block p-4 mt-4">
-          <h1 className="font-bold text-2xl text-red-500">
-            Welcome back, {localStorage.getItem("username")}
-          </h1>
+        <div className="flex justify-between">
+          <div className="bg-white rounded-xl inline-block p-4 mt-4">
+            <h1 className="font-bold text-2xl text-red-500">
+              Welcome back, {localStorage.getItem("username")}
+            </h1>
+          </div>
+          <div>
+            <button
+              className="text-xl font-semibold text-white bg-red-800 p-2 rounded-lg"
+              onClick={deleteUser}
+            >
+              Delete account
+            </button>
+          </div>
         </div>
         <h2 className="font-bold text-2xl text-white my-5">My course</h2>
         <div className="bg-white p-8 rounded-xl">
@@ -84,9 +102,6 @@ function DashboardMain() {
                   Continue
                 </button>
               </Link>
-              {/* <button className="bg-red-500 p-2 rounded-xl text-white font-bold">
-                Reset Progress
-              </button> */}
             </div>
           </div>
         </div>
@@ -112,9 +127,6 @@ function DashboardMain() {
                     Go to Word Game
                   </button>
                 </Link>
-                <button className="bg-red-500 p-2 rounded-xl text-white font-bold">
-                  Reset Score
-                </button>
               </div>
             </div>
           </div>

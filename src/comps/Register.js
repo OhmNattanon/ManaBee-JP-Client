@@ -3,6 +3,7 @@ import axios from "axios";
 
 function Register() {
   const url = "http://localhost:8080/user/register";
+  const urlProgress = "http://localhost:8080/progress/init";
 
   const [userData, setUserData] = useState({
     Fname: "",
@@ -21,7 +22,8 @@ function Register() {
   const handleSummit = async () => {
     try {
       // const reqData = JSON.stringify(userData);
-      await axios.post(`${url}`, userData);
+      const res = await axios.post(`${url}`, userData);
+      await axios.post(`${urlProgress}`, { userId: res.data.id });
       alert("You are all set!");
     } catch {
       alert("something when wrong");

@@ -371,7 +371,9 @@ function WordGame() {
                 className="font-bold text-white bg-red-400 rounded-lg p-2 my-5"
                 onClick={submitScore}
               >
-                <Link to="/dashboard">Back to Dashboard</Link>
+                <Link to={`/dashboard/${localStorage.getItem("userId")}`}>
+                  Back to Dashboard
+                </Link>
               </button>
             </div>
           ) : (
